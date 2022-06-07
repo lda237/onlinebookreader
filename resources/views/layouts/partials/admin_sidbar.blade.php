@@ -30,6 +30,12 @@
                    </a>
                  </li>
 
+                 <li class="{{'admin/about' == request()->path() ? 'active':''}}">
+                    <a href="/admin/about">
+                    <i class="fa fa-image"></i>
+                      <span>About</span>
+                   </a>
+                 </li>
             </ul>
         </div>
     </div>

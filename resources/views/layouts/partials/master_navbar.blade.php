@@ -26,9 +26,9 @@ li a:hover {
 
           <div class="logo">
             <div class="site-logo">
-              <a class="js-logo-clone" href="{{ url('/') }}">
+              <a class="js-logo-clone" href="{{ url('/index') }}">
               {{-- Online Pdf Reader --}}
-             <img  src="/storage/image/logo1.png" class="justify-center d-flex w-50" alt="">
+             <img  src="/storage/image/logo2.png" class="justify-center d-flex "  alt="">
               </a>
             </div>
           </div>
@@ -36,13 +36,17 @@ li a:hover {
           <div class=" main-nav d-none d-lg-block">
             <nav class="text-right site-navigation text-md-center " role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                 <li class="{{'/' == request()->path() ? 'active':''}}">
-     <a class="icons-btn d-inline-block bag" href="/">Home</a>
- </li>
+                 <li class="{{'index' == request()->path() ? 'active':''}}">
+           <a class="icons-btn d-inline-block bag" href="/index">Accueil</a>
+            </li>
 
- <li class="{{'shop' == request()->path() ? 'active':''}}">
-     <a class="icons-btn d-inline-block bag" href="/shop">Readers</a>
- </li>
+            <li class="{{'shop' == request()->path() ? 'active':''}}">
+                <a class="icons-btn d-inline-block bag" href="/shop">Livres</a>
+            </li>
+
+            <li class="{{'about' == request()->path() ? 'active':''}}">
+                <a class="icons-btn d-inline-block bag" href="/about">à propos</a>
+            </li>
 
               </ul>
 
@@ -65,9 +69,11 @@ li a:hover {
                  @if (Auth::user()->role=="admin")
                        <a class="px-1" href="{{ url('/admin/dashboard') }} ">{{ Auth::user()->name }}</a>
                        @else
-                       <a class="px-1" href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">{{ Auth::user()->name }}</a>
+                       <a class="px-1" href="" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                        <div class="dropdown-menu top-right links" style="float:right;">
-
+                        <a class="dropdown-item" href="/auth_user/dashboard">
+                         Dashboard
+                      </a>
 						<a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();">

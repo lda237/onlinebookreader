@@ -23,9 +23,6 @@ class RederController extends Controller
     {
 
         $category=Category::findOrFail($request->category_id);
-
-
-
            $this->validate($request,[
             // 'url' => 'empty_if:attachment|url|URL|string',
             // 'attachment' => 'empty_if:url|attachment',
@@ -34,10 +31,10 @@ class RederController extends Controller
             // 'projectTask' => 'required',
             'file.*' => 'mimes:csv,txt,xlx,xls,pdf|max:2048',
       ]);
-$file=$request->file;
-$pdfname=time().'.'.$file->getClientOriginalExtension();
-$request->file->move('assets',$pdfname);
-        //    $readername = $request->file('file')->getClientOriginalName();
+            $file=$request->file;
+            $pdfname=time().'.'.$file->getClientOriginalExtension();
+            $request->file->move('assets',$pdfname);
+                    //    $readername = $request->file('file')->getClientOriginalName();
 
         //    $path = $request->file('file')->store('public/files');
 

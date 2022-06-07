@@ -9,6 +9,7 @@ class Category extends Model
 {
     use HasFactory;
     protected $fillable =['name'];
+
     public function readers()
     {
         return $this->hasMany(Reader::class);

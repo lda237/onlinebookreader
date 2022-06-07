@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'La Plume de Myss'),
 
     /*
     |--------------------------------------------------------------------------
@@ -164,7 +164,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
 
 
         /*
@@ -199,6 +198,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // ...
         'PDF' => Barryvdh\DomPDF\Facade::class,
+
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
     ])->toArray(),
 
 ];

@@ -17,7 +17,7 @@ class ConnectionController extends Controller
 		}
 		else
 		{
-			return redirect('/');
+			return redirect('/auth_user/dashboard');
 		}
 	}
 }

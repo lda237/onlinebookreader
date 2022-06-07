@@ -3,7 +3,7 @@
 
 <head>
   <title>
-    Online Pdf Reader
+    La Plume de Myss
    {{--  @yield("title")  --}}
   </title>
   <meta charset="utf-8">
@@ -15,6 +15,7 @@
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script src="https://cdn.cinetpay.com/seamless/main.js" type="text/javascript"></script>
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
   <link rel="stylesheet" href="../user/fonts/style.css">
 
@@ -37,6 +38,7 @@ window.onload=function(){
 document.addEventListener("contextmenu",function(e){
 e.preventDefault();
 },false);
+
 }
 </script>
 </head>

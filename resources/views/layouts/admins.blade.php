@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <link rel="shortcut icon" type="image/x-icon" href="admins/img/favicon.ico">
-    <title>Online Pdf Reader</title>
+    <title>La Plume de Myss</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('admins/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admins/css/font-awesome.min.css')}}">
@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('admins/css/dataTables.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admins/css/fullcalendar.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admins/css/bootstrap5.css')}}">
+
 </head>
 
 <body class="font-sans antialiased">

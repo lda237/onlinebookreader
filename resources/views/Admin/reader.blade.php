@@ -6,6 +6,8 @@
                 </div>
                  @endif
 
+
+
     {{-- ************************************************************************************************ --}}
     <!-- The Modal ADD-->
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModallabel" aria-hidden="true">
@@ -56,18 +58,6 @@
                                             <input class="form-control" type="text" name="price" required>
                                         </div>
                                     </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="file">Choose a Reader</label>
-                                            <div class="profile-upload">
-                                                <div class="upload-input">
-                                                    <input type="file" name="file" class="form-controle" onchange="previewfile(this)" required/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="file">Choose Cover Page Image</label>
@@ -81,10 +71,20 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="file">Choose a Reader</label>
+                                            <div class="profile-upload">
+                                                <div class="upload-input">
+                                                    <input type="file" name="file" class="form-controle" onchange="previewfile(this)" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                  <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>description<span class="text-danger"></span></label>
-                                            <textarea class="form-control" rows="3" cols="30" name="description" id="about_description"></textarea>
+                                            <textarea class="form-control" rows="5" cols="30" name="description" id="about_description"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -229,6 +229,15 @@
           <div class="card">
             <style>
             .w-10p{width:10% !important;}
+table{
+border-collapse:collapse;
+table-layout:fixed
+}
+table td{
+border:solid 1px #666666;
+word-wrap:break-word
+}
+            .box{overflow-wrap: break-word;}
             </style>
 
             <div class="card-body" style=" text-align: center;">
@@ -242,7 +251,7 @@
                     <th class="w-10p">Author</th>
                     <th class="w-10p">Price</th>
                     {{-- <th class="w-10p">Category</th> --}}
-                    <th class="w-10p">description</th>
+                    <th class="w-10p box">description</th>
                     <th class="w-10p">Action</th>
                   </thead>
                   <tbody>
@@ -255,7 +264,7 @@
                     <td>{{$data->autor}}</td>
                     <td>{{$data->price}}</td>
                     {{-- <td>{{$data->category->name}}</td> --}}
-                    <td>{{$data->description}} </td>
+                    <td><button type="button" class="float-right btn text-info" data-toggle="modal" data-target="#descriptionModal-{{ $data->id }}" >Description</button> </td>
 
                     <td>
                                           <div class="dropdown dropdown-action">
@@ -274,6 +283,33 @@
                                           </div>
                                       </td>
                     </tr>
+{{-- ************************************************************************************************ --}}
+      <!-- The Modal description-->
+      <div class="modal fade" id="descriptionModal-{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModallabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header" style="background-color: #66c3ee; color:white">
+              <h4 class="modal-title" id="exampleModallable">{{ $data->title }}</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="btn btn-danger">&times;</span> </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="container">
+                <div class=" pt-10 mt-10 box">
+                  {{-- <h1>Heading</h1> --}}
+                  {{ $data->description }}
+                </div>
+              </div>
+<!-- Modal footer -->
+<div class="py-3 pl-2 text-white float-left" style="background-color: black">
+    <h3>Auteur : {{ $data->autor }} </h3>
+  </div>
+          </div>
+        </div>
+      </div>
+      <!--End The Modal description-->
                     @endforeach
                   </tbody>
                 </table>

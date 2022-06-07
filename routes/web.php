@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RederController;
 use App\Http\Controllers\BannerController;
@@ -7,7 +8,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConnectionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +22,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',[HomeController::class,'index']);
+Route::get('/', function () {
+return view('auth/login');
+});
+
 
 Route::get('/redirects',[ConnectionController::class,'redirects'])->name('redirects');
 
@@ -40,19 +46,27 @@ Route::group(['middleware' =>['auth:sanctum', 'verified','auth_admin']], functio
     Route::post('/banner_save',[BannerController::class,'store'])->name('banner_save');
     Route::patch('/update_banner/{id}',[BannerController::class,'update'])->name('update_banner');
     Route::delete('/delete_banner/{id}',[BannerController::class,'delete'])->name('delete_banner');
+
+    Route::get('/admin/about',[AboutController::class,'index'])->name('admin.about');
+    Route::post('/about_save',[AboutController::class,'store'])->name('about_save');
+    Route::patch('/update_about/{id}',[AboutController::class,'update'])->name('update_about');
+    Route::delete('/delete_about/{id}',[AboutController::class,'delete'])->name('delete_about');
 });
 
+Route::group(['middleware' =>['auth:sanctum', 'verified']], function(){
+    Route::get('/index',[HomeController::class,'index']);
+    Route::get('/auth_user/dashboard',[UserDashboardController::class,'index']);
+
 //start user  route
-Route::get('handle-payment', 'PaymentController@handlePayment')->name('make.payment');
-Route::get('cancel-payment', 'PaymentController@paymentCancel')->name('cancel.payment');
-Route::get('payment-success', 'mentController@paymentSuccess')->name('success.payment');
-
-
 Route::get('/shop', [HomeController::class,'shop'])->name('shop');
 
 Route::get('/shop-single/{id}',[HomeController::class,'shop_single'])->name('shop-single');
 
+Route::get('/buy/{reader_id}',[HomeController::class,'buy'])->name('buy');
+
 Route::post('/add_to_cart',[HomeController::class,'add_to_cart'])->name('add_to_cart');
+
+Route::get('/about', [HomeController::class,'about'])->name('about');
 
 Route::get('/download/{readername}', [HomeController::class,'download'])->name('download');
 
@@ -68,19 +82,23 @@ Route::post('/order_place',[HomeController::class,'order_place'])->name('order_p
 
 Route::get('/orders_show/{user_id}',[HomeController::class,'orders_show'])->name('orders_show');
 
-Route::get('/search',[HomeController::class,'search'])->name('search');
+Route::post('/search_reader',[HomeController::class,'search'])->name('search_reader');
 
 Route::get('/checkout',[HomeController::class,'checkout'])->name('checkout');
 
 Route::get('/payment/{method}',[HomeController::class,'payment'])->name('payment');
 
-Route::get('/paypal',[PaymentController::class,'paypal'])->name('paypal');
+Route::post('/payment',[PaymentController::class,'payment'])->name('payment');
 Route::get('/orange/{method}',[PaymentController::class,'orange'])->name('orange');
 Route::get('/mtn/{method}',[PaymentController::class,'mtn'])->name('mtn');
 
+Route::get('handle-payment', 'PayPalPaymentController@handlePayment')->name('make.payment');
+
+Route::get('cancel-payment', 'PayPalPaymentController@paymentCancel')->name('cancel.payment');
+
+Route::get('payment-success', 'PayPalPaymentController@paymentSuccess')->name('success.payment');
+
 Route::post('/send-email',[MailController::class,'sendEmail'])->name('send-email');
 
-//end user  route
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/user/dashboard', [HomeController::class,'index'])
-// ->name('user_dashboard');
+});
+require __DIR__.'/auth.php';

@@ -1,9 +1,10 @@
-<div class="header pb-10 mb-10" style="background-color: #66c3ee; color:whitesmoke">
+<div class="header">
     <div class="header-left">
-        <a href="/" class="logo" style="text-decoration: none; color:whitesmoke">
-            <img src="/storage/image/logo1.png" class="justify-center d-flex w-100" alt="Online pdf reader">
+        <a href="/index" class="logo" style="text-decoration: none; color:whitesmoke">
+            <img src="/storage/image/logo1.png" class="justify-center d-flex" alt="La Plume de Myss">
         </a>
     </div>
+
     <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
     <a id="mobile_btn" class="float-left mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
     <ul class="float-right nav user-menu">
@@ -17,7 +18,7 @@
                     <img class="rounded-circle" src="admins/img/user.jpg" width="24" alt="Admin">
                     <span class="status online"></span>
                 </span> --}}
-                <span>Admin</span>
+                <span>{{ Auth::user()->name }}</span>
             </a>
             <div class="dropdown-menu">
                 {{-- <a class="dropdown-item" href="profile.html">My Profile</a>
@@ -34,12 +35,12 @@
             </div>
         </li>
     </ul>
-    <div class="float-right dropdown mobile-user-menu">
+    {{-- <div class="float-right dropdown mobile-user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
         <div class="dropdown-menu dropdown-menu-right">
             {{-- <a class="dropdown-item" href="profile.html">My Profile</a>
             <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
-            <a class="dropdown-item" href="settings.html">Settings</a> --}}
+            <a class="dropdown-item" href="settings.html">Settings</a> -}}
             <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();">
@@ -49,7 +50,7 @@
                 @csrf
              </form>
         </div>
-    </div>
+    </div> --}}
 </div>
 <br><br>
 
